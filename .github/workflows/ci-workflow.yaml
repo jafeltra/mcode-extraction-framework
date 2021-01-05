@@ -16,8 +16,11 @@ jobs:
       env:
         CI: true
   test:
-    name: Run tests
-    runs-on: ubuntu-latest
+    name: Run tests on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
